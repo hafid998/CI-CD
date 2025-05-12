@@ -1,0 +1,24 @@
+name: CI Workflow
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout source code
+      uses: actions/checkout@v2
+
+    - name: Install dependencies
+      run: sudo apt-get install g++
+
+    - name: Compile the code
+      run: g++ stack.cpp -o main
+
+    - name: Run the program
+      run: ./main
